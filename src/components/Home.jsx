@@ -7,7 +7,7 @@ const Home = () => {
                 <img src="https://res.cloudinary.com/dy1hlcsyw/image/upload/v1690054759/samples/smile.jpg" class="card-img-top" alt="Home page"/>
                     <div class="card-body">
                         <h5 class="card-title">Home Title</h5>
-                        <p class="card-text">Welcome TO Home page</p>
+                        <p class="card-text">Welcome To Home page</p>
                         <a href="#" class="btn btn-primary">Random</a>
                     </div>
             </div>
