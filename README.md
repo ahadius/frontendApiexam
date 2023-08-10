@@ -10,7 +10,7 @@ courses ive taken and used for this exam:
 https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/learn/lecture/16845514?start=15#questions
 https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/?kw=mern&src=sac
 
-i also used bootstrap (have used it before)
+i also used bootstrap (have used it before) also makes some features look decent
 
 
 
