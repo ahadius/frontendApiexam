@@ -14,6 +14,12 @@ Frontend:
 step 1: npm Install
 step 2: start
 
+some endpoints from the backend:
+app.use('/api/admin', require('./routes/admin.js'));
+app.use('/api/user', require('./routes/user.js'));
+
+
+
 Backend:
 step 1: npm Install
 step 2: node ./server.js
