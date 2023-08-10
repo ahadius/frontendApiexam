@@ -10,6 +10,7 @@ const AddActivity = () => {
   const editactivity = a.editactivity;
   const allusers = a.users;
   const getusers = a.getusers;
+  const delactivity=a.delactivity;
   useEffect(() => {
     getalladminactivity();
   }, []);
@@ -175,6 +176,12 @@ const AddActivity = () => {
                   onClick={() => handleEdit(plan._id, plan.users, plan.department)}
                 >
                   Edit Users/Department
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => delactivity({activity:plan._id})}
+                >
+                  Delete
                 </Button>
               </td>
             </tr>

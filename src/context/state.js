@@ -138,8 +138,26 @@ const State = (props) => {
       alert(json.message)
     }
   }
+  const delactivity = async (data) => {
+    const response = await fetch(`${host}/api/admin/activity`, {
+      method: "delete",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Content-Type": "application/json",
+        "Authentication":localStorage.getItem('secret-login-token')
+      },
+      body: JSON.stringify(data)
+    })
+    const json = await response.json();
+    if (json.success) {
+     window.location.reload()
+    } else {
+      alert(json.message)
+    }
+  }
 return (
-  <context.Provider value={{addhours,login,activity,getallactivity,getalladminactivity,getusers,users,addactivity,editactivity}}>
+  <context.Provider value={{delactivity,addhours,login,activity,getallactivity,getalladminactivity,getusers,users,addactivity,editactivity}}>
     {props.children}
   </context.Provider>
 )

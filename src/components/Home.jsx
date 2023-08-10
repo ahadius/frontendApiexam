@@ -13,6 +13,6 @@ const Home = () => {
             </div>
         </div>
     )
-}
+} //do note this is just for filling the criteria that i have 2 pages routed up =) so yeah its just for show
 
 export default Home
