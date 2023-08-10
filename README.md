@@ -9,7 +9,7 @@ https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-gui
 https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/?kw=mern&src=sac
 
 i also used bootstrap (have used it before) also makes some features look decent
-
+setup steps:
 Frontend:
 step 1: npm Install
 step 2: start
