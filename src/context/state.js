@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import context from './context.js';
-const host = "http://localhost:5000"
+import React, { useEffect, useState } from "react";
+import context from "./context.js";
+const host = "http://localhost:5000";
 
 const State = (props) => {
-  const [activity, setactivity] = useState([])
-  const [users, setusers] = useState([])
+  const [activity, setactivity] = useState([]);
+  const [users, setusers] = useState([]);
   const login = async (data) => {
     const response = await fetch(`${host}/api/user/login`, {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-      localStorage.setItem('secret-login-token', json.token)
-      localStorage.setItem('secret-login-info', json.userdata.role)
-      localStorage.setItem('secret-login-name', json.userdata.email)
-      alert(`Welcome aboard, ${json.userdata.email}! Get ready to track, conquer, and celebrate your activities with us.`)
-      if(json.userdata.role==="admin"){
-        window.location.href="/add"
-      }else{
-      window.location.href="/"
+      localStorage.setItem("secret-login-token", json.token);
+      localStorage.setItem("secret-login-info", json.userdata.role);
+      localStorage.setItem("secret-login-name", json.userdata.email);
+      alert(
+        `Welcome aboard, ${json.userdata.email}! Get ready to track, conquer, and celebrate your activities with us.`
+      );
+      if (json.userdata.role === "admin") {
+        window.location.href = "/add";
+      } else {
+        window.location.href = "/";
       }
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const getallactivity = async (data) => {
     const response = await fetch(`${host}/api/user/activity`, {
       method: "get",
@@ -37,17 +39,17 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-      setactivity(json.activities)
+      setactivity(json.activities);
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const getalladminactivity = async (data) => {
     const response = await fetch(`${host}/api/admin/activity`, {
       method: "get",
@@ -55,17 +57,17 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-      setactivity(json.activity)
+      setactivity(json.activity);
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const getusers = async (data) => {
     const response = await fetch(`${host}/api/admin/allusers`, {
       method: "post",
@@ -73,17 +75,17 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-      setusers(json.users)
+      setusers(json.users);
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const addactivity = async (data) => {
     const response = await fetch(`${host}/api/admin/addactivity`, {
       method: "post",
@@ -91,17 +93,17 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-     window.location.reload()
+      window.location.reload();
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const editactivity = async (data) => {
     const response = await fetch(`${host}/api/admin/activity/user`, {
       method: "put",
@@ -109,17 +111,17 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-     window.location.reload()
+      window.location.reload();
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const addhours = async (data) => {
     const response = await fetch(`${host}/api/user/bookhours`, {
       method: "post",
@@ -127,17 +129,17 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-     window.location.reload()
+      window.location.reload();
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
+  };
   const delactivity = async (data) => {
     const response = await fetch(`${host}/api/admin/activity`, {
       method: "delete",
@@ -145,23 +147,35 @@ const State = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Content-Type": "application/json",
-        "Authentication":localStorage.getItem('secret-login-token')
+        Authentication: localStorage.getItem("secret-login-token"),
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     const json = await response.json();
     if (json.success) {
-     window.location.reload()
+      window.location.reload();
     } else {
-      alert(json.message)
+      alert(json.message);
     }
-  }
-return (
-  <context.Provider value={{delactivity,addhours,login,activity,getallactivity,getalladminactivity,getusers,users,addactivity,editactivity}}>
-    {props.children}
-  </context.Provider>
-)
+  };
+  return (
+    <context.Provider
+      value={{
+        delactivity,
+        addhours,
+        login,
+        activity,
+        getallactivity,
+        getalladminactivity,
+        getusers,
+        users,
+        addactivity,
+        editactivity,
+      }}
+    >
+      {props.children}
+    </context.Provider>
+  );
+};
 
-}
-
-export default State
+export default State;

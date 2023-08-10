@@ -1,6 +1,6 @@
-import React, { forwardRef, useContext, useEffect, useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
-import context from '../context/context';
+import React, { forwardRef, useContext, useEffect, useState } from "react";
+import { Table, Button, Modal, Form } from "react-bootstrap";
+import context from "../context/context";
 
 const AddActivity = () => {
   const a = useContext(context);
@@ -10,7 +10,7 @@ const AddActivity = () => {
   const editactivity = a.editactivity;
   const allusers = a.users;
   const getusers = a.getusers;
-  const delactivity=a.delactivity;
+  const delactivity = a.delactivity;
   useEffect(() => {
     getalladminactivity();
   }, []);
@@ -19,14 +19,14 @@ const AddActivity = () => {
   const [formdata, setformdata] = useState({
     users: [],
     department: [],
-    numberofhour: 0, 
-    title: "", 
-    description: "", 
+    numberofhour: 0,
+    title: "",
+    description: "",
   });
   const [data, setdata] = useState({
     users: [],
     department: [],
-    id: ""
+    id: "",
   });
   const handleModalClose = () => {
     setShowModal(false);
@@ -36,10 +36,10 @@ const AddActivity = () => {
   };
 
   const handleFormSubmit = () => {
-    addactivity(formdata)
+    addactivity(formdata);
   };
   const handleFormupdateSubmit = () => {
-    editactivity(data)
+    editactivity(data);
   };
 
   const handleFormChange = (e) => {
@@ -51,27 +51,28 @@ const AddActivity = () => {
   };
   const handleEdit = (id, users, department) => {
     setdata({
-      id: id, users, department
-    })
-    setShowModal(true)
-  }
-
+      id: id,
+      users,
+      department,
+    });
+    setShowModal(true);
+  };
 
   const handledepartCheckboxChange = async (event) => {
     const { value, checked } = event.target;
     if (checked) {
       // Add user to data.users
-      setdata(prevData => ({
+      setdata((prevData) => ({
         ...prevData,
         department: [...prevData.department, value],
-        users:[]
+        users: [],
       }));
     } else {
       // Remove user from data.users
-      setdata(prevData => ({
+      setdata((prevData) => ({
         ...prevData,
-        department: prevData.department.filter(userId => userId !== value),
-        users:[]
+        department: prevData.department.filter((userId) => userId !== value),
+        users: [],
       }));
     }
   };
@@ -79,46 +80,41 @@ const AddActivity = () => {
     const { value, checked } = event.target;
     if (checked) {
       // Add user to data.users
-      setformdata(prevData => ({
+      setformdata((prevData) => ({
         ...prevData,
         department: [...prevData.department, value],
-        users:[]
+        users: [],
       }));
     } else {
       // Remove user from data.users
-      setformdata(prevData => ({
+      setformdata((prevData) => ({
         ...prevData,
-        department: prevData.department.filter(userId => userId !== value),
-        users:[]
+        department: prevData.department.filter((userId) => userId !== value),
+        users: [],
       }));
     }
   };
   useEffect(() => {
-
     getusers({ department: data.department });
-
   }, [data.department]);
   useEffect(() => {
-
     getusers({ department: formdata.department });
-
   }, [formdata.department]);
-
 
   const handleUserCheckboxChange = async (event) => {
     const { value, checked } = event.target;
 
     if (checked) {
       // Add user to data.users
-      setdata(prevData => ({
+      setdata((prevData) => ({
         ...prevData,
-        users: [...prevData.users, value]
+        users: [...prevData.users, value],
       }));
     } else {
       // Remove user from data.users
-      setdata(prevData => ({
+      setdata((prevData) => ({
         ...prevData,
-        users: prevData.users.filter(userId => userId !== value)
+        users: prevData.users.filter((userId) => userId !== value),
       }));
     }
   };
@@ -127,23 +123,25 @@ const AddActivity = () => {
 
     if (checked) {
       // Add user to data.users
-      setformdata(prevData => ({
+      setformdata((prevData) => ({
         ...prevData,
-        users: [...prevData.users, value]
+        users: [...prevData.users, value],
       }));
     } else {
       // Remove user from data.users
-      setformdata(prevData => ({
+      setformdata((prevData) => ({
         ...prevData,
-        users: prevData.users.filter(userId => userId !== value)
+        users: prevData.users.filter((userId) => userId !== value),
       }));
     }
   };
-  
+
   return (
-    <div className='container'>
+    <div className="container">
       <h1 className="mt-3 text-center">All Activities</h1>
-      <div className="btn btn-info my-2" onClick={() => setShowModal2(true)}>Add Activity</div>
+      <div className="btn btn-info my-2" onClick={() => setShowModal2(true)}>
+        Add Activity
+      </div>
       <Table bordered hover>
         <thead>
           <tr>
@@ -160,26 +158,26 @@ const AddActivity = () => {
               <td>{plan.title}</td>
               <td>{plan.description}</td>
               <td>{plan.availableHours.length}</td>
-              <td>{plan.hours.length-plan.availableHours.length}</td>
+              <td>{plan.hours.length - plan.availableHours.length}</td>
               <td>
                 <ul>
-                  {
-                    plan.users.map((user) => {
-                      return <li>{user}</li>
-                    })
-                  }
+                  {plan.users.map((user) => {
+                    return <li>{user}</li>;
+                  })}
                 </ul>
               </td>
               <td>
                 <Button
                   variant="primary"
-                  onClick={() => handleEdit(plan._id, plan.users, plan.department)}
+                  onClick={() =>
+                    handleEdit(plan._id, plan.users, plan.department)
+                  }
                 >
                   Edit Users/Department
                 </Button>
                 <Button
                   variant="danger"
-                  onClick={() => delactivity({activity:plan._id})}
+                  onClick={() => delactivity({ activity: plan._id })}
                 >
                   Delete
                 </Button>
@@ -191,7 +189,9 @@ const AddActivity = () => {
 
       <Modal show={showModal} backdrop="static" onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title onClick={() => console.log(data)}>Edit Activity</Modal.Title>
+          <Modal.Title onClick={() => console.log(data)}>
+            Edit Activity
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -205,13 +205,15 @@ const AddActivity = () => {
               >
                 Select Departments
               </button>
-              <ul className="dropdown-menu alllanguages" aria-labelledby="languageDropdown">
+              <ul
+                className="dropdown-menu alllanguages"
+                aria-labelledby="languageDropdown"
+              >
                 {["security", "accountant"].map((user, index) => (
-                  <li
-                    key={index}>
+                  <li key={index}>
                     <label className="dropdown-item">
                       <input
-                        className='mx-2 pointer'
+                        className="mx-2 pointer"
                         type="checkbox"
                         value={user}
                         checked={data.department.includes(user)}
@@ -233,13 +235,15 @@ const AddActivity = () => {
               >
                 Select users
               </button>
-              <ul className="dropdown-menu alllanguages" aria-labelledby="languageDropdown">
+              <ul
+                className="dropdown-menu alllanguages"
+                aria-labelledby="languageDropdown"
+              >
                 {allusers?.map((user, index) => (
-                  <li
-                    key={index}>
+                  <li key={index}>
                     <label className="dropdown-item">
                       <input
-                        className='mx-2 pointer'
+                        className="mx-2 pointer"
                         type="checkbox"
                         value={user._id}
                         checked={data.users.includes(user._id)}
@@ -306,13 +310,15 @@ const AddActivity = () => {
               >
                 Select Departments
               </button>
-              <ul className="dropdown-menu alllanguages" aria-labelledby="languageDropdown">
+              <ul
+                className="dropdown-menu alllanguages"
+                aria-labelledby="languageDropdown"
+              >
                 {["security", "accountant"].map((user, index) => (
-                  <li
-                    key={index}>
+                  <li key={index}>
                     <label className="dropdown-item">
                       <input
-                        className='mx-2 pointer'
+                        className="mx-2 pointer"
                         type="checkbox"
                         value={user}
                         checked={formdata.department.includes(user)}
@@ -334,13 +340,15 @@ const AddActivity = () => {
               >
                 Select users
               </button>
-              <ul className="dropdown-menu alllanguages" aria-labelledby="languageDropdown">
+              <ul
+                className="dropdown-menu alllanguages"
+                aria-labelledby="languageDropdown"
+              >
                 {allusers?.map((user, index) => (
-                  <li
-                    key={index}>
+                  <li key={index}>
                     <label className="dropdown-item">
                       <input
-                        className='mx-2 pointer'
+                        className="mx-2 pointer"
                         type="checkbox"
                         value={user._id}
                         checked={formdata.users.includes(user._id)}
