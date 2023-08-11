@@ -12,7 +12,7 @@ i also used bootstrap (have used it before) also makes some features look decent
 setup steps:
 Frontend:
 step 1: npm Install
-step 2: start
+step 2: npm start
 
 some endpoints from the backend:
 app.use('/api/admin', require('./routes/admin.js'));
