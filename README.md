@@ -18,7 +18,7 @@ some endpoints from the backend:
 app.use('/api/admin', require('./routes/admin.js'));
 app.use('/api/user', require('./routes/user.js'));
 
-
+i do have couple of tests on Backend server, use npm test in the terminal to see them.
 
 Backend:
 step 1: npm Install
